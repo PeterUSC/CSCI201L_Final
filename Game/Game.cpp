@@ -119,6 +119,7 @@ void Game::GenerateOutput()
 	SDL_RenderClear(renderer);
 	for (auto sprite : sprites)
 	{
+		SDL_Log("sprite %i",sprites.size());
 		sprite->DrawTexture(renderer);
 	}
 	SDL_RenderPresent(renderer);
@@ -136,12 +137,15 @@ void Game::LoadData()
 	background->SetSprite(bgSprite);
 	bgSprite->SetTexture(GetTexture("Assets/Background.png"));
 
-
+	
+	
 	player = new Character(this);
 	player->SetPosition(middle);
+	
 	Sprite* playerSprite = new Sprite(player,10);
 	player->SetSprite(playerSprite);
 	bgSprite->SetTexture(GetTexture("Assets/Idle.png"));
+	
 }
 
 void Game::LoadTexture(const char* fileName)
