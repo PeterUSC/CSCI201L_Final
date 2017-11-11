@@ -106,9 +106,9 @@ void Game::UpdateGame()
 
 	std::vector<Character*> copy = characters;
 	// Update all characters
-	for (auto chara : copy)
+	for (auto character : copy)
 	{
-		chara->Update(deltaTime);
+		character->Update(deltaTime);
 	}
 	
 }
@@ -140,11 +140,11 @@ void Game::LoadData()
 	
 	
 	player = new Character(this);
-	player->SetPosition(middle);
+	player->SetPosition(Vector2(20,20));
 	
 	Sprite* playerSprite = new Sprite(player,10);
 	player->SetSprite(playerSprite);
-	bgSprite->SetTexture(GetTexture("Assets/Idle.png"));
+	playerSprite->SetTexture(GetTexture("Assets/Idle.png"));
 	
 }
 
