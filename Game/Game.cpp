@@ -8,6 +8,7 @@
 #include "Character.h"
 #include "Sprite.h"
 #include "Person.h"
+#include "Player.h"
 
 Game::Game()
 :window(nullptr)
@@ -81,7 +82,8 @@ void Game::ProcessInput()
 	{
 		isRunning = false;
 	}
-	for (auto character : characters)
+	std::vector<Character*> copy = characters;
+	for (auto character : copy)
 	{
 		character->ProcessInput(state);
 	}
@@ -114,6 +116,20 @@ void Game::UpdateGame()
 	{
 		character->Update(deltaTime);
 	}
+	//SDL_Log("to characters size %i", characters.size());
+	std::vector<Character*> toDelete;
+	for (auto character : characters)
+	{
+		if (!character->isAlive())
+		{
+			toDelete.emplace_back(character);
+		}
+	}
+	//SDL_Log("to delete size %i", toDelete.size());
+	for (auto dead : toDelete)
+	{
+		delete dead;
+	}
 	
 }
 
@@ -123,16 +139,35 @@ void Game::GenerateOutput()
 	SDL_RenderClear(renderer);
 	for (auto sprite : sprites)
 	{
-		SDL_Log("sprite %i",sprites.size());
+		//SDL_Log("sprite %i",sprites.size());
 		sprite->DrawTexture(renderer);
 	}
 	SDL_RenderPresent(renderer);
 }
 
+void Game::RemoveCharacter(Character* removee)
+{
+	auto charIter = std::find(characters.begin(), characters.end(), removee);
+	if (charIter != characters.end())
+	{
+		Sprite* removeeSprite = removee->getSprite();
+		auto spriteIter = std::find(sprites.begin(), sprites.end(), removeeSprite);
+		if (spriteIter != sprites.end())
+		{
+			SDL_Log("deleting spirte");
+			sprites.erase(spriteIter);
+		}
+		SDL_Log("deleting character");
+		characters.erase(charIter);
+	}
+}
+
+//void Game::RemoveSprite()
 void Game::LoadData()
 {
 	LoadTexture("Assets/Background.png");
 	LoadTexture("Assets/Idle.png");
+	LoadTexture("Assets/Bullet.png");
 
 	Character* background = new Character(this);
 	Vector2 middle = Vector2(1024/2, 768/2);
@@ -143,7 +178,7 @@ void Game::LoadData()
 
 	
 	
-	player = new Person(this);
+	player = new Player(this);
 	player->SetPosition(Vector2(20,20));
 	
 	Sprite* playerSprite = new Sprite(player,10);

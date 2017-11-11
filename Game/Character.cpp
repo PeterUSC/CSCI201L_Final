@@ -15,6 +15,9 @@ Character::Character(Game* game):
 
 Character::~Character()
 {
+	myGame->RemoveCharacter(this);
+	delete mySprite;
+	
 }
 
 void Character::ProcessInput(const Uint8 *state)

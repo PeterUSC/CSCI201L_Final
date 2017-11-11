@@ -16,8 +16,10 @@ public:
 	void AddCharacter(class Character* newChar) { characters.push_back(newChar); }
 	SDL_Texture* GetTexture(const char* fileName);
 	void AddSprite(class Sprite* sprite);
+	class Player* GetPlayer() { return player; }
 
-
+	void RemoveCharacter(class Character* removee);
+	void RemoveSprite(class Sprite* removee);
 	//void LoadSound(const std::string& filename);
 	//Mix_Chunk* GetSound(const std::string& filename);
 private:
@@ -34,7 +36,7 @@ private:
 	SDL_Renderer* renderer;
 	Uint32 ticksCount;
 	bool isRunning;
-	class Person* player;
+	class Player* player;
 
 	std::vector<class Sprite*> sprites;
 	std::unordered_map<const char*, SDL_Texture*> textures;

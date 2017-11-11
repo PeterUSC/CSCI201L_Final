@@ -10,7 +10,7 @@ private:
 	float rotation;
 	Vector2 position;
 	class Sprite* mySprite;
-	
+	bool alive = true;
 
 public:
 	Character(class Game* game);
@@ -28,6 +28,9 @@ public:
 
 	virtual void ProcessInput(const Uint8 *state);
 	virtual void Update(float deltaTime);
+
+	void SetAlive(bool newState) { alive = newState; }
+	bool isAlive() { return alive; }
 
 	void SetSprite(class Sprite*);
 	Sprite* GetSprite();
