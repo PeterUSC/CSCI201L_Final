@@ -10,8 +10,8 @@ public:
 	void Update(float deltaTime) override;
 
 private:
-	float xSpeed = 0;
-	float ySpeed = 0;
-	float const Gravity = 5.0f;
+	float xSpeed;
+	float ySpeed;
+	float const Gravity = 900.0f;
 };
 

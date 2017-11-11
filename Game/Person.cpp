@@ -7,6 +7,8 @@
 Person::Person(Game* game)
 	:Character(game)
 {
+	xSpeed = 0;
+	ySpeed = 0;
 }
 
 
@@ -23,24 +25,30 @@ void Person::ProcessInput(const Uint8 *state)
 	}
 	else if (state[SDL_SCANCODE_A])
 	{
-		xSpeed = -300.0f;
+		xSpeed = -300.;
 	}
 	else
 	{
 		xSpeed = 0;
 	}
+	if (state[SDL_SCANCODE_SPACE])
+	{
+		ySpeed = -500;
+	}
+
 }
 void Person::Update(float deltaTime)
 {
-	Person::Update(deltaTime);
+	Character::Update(deltaTime);
 	Vector2 newPos = GetPosition();
 	newPos.x += xSpeed*deltaTime;
 	ySpeed += deltaTime*Gravity;
-	newPos.y += ySpeed*Gravity;
+	newPos.y += ySpeed*deltaTime;
 
-	if (newPos.y + (getSprite())->GetHeight() / 2 >= 768)
+	if (newPos.y + getSprite()->GetHeight() / 2 >= 768)
 	{
 		ySpeed = 0;
+		newPos.y = 768 - getSprite()->GetHeight() / 2;
 	}
 
 	SetPosition(newPos);

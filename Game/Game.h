@@ -34,7 +34,7 @@ private:
 	SDL_Renderer* renderer;
 	Uint32 ticksCount;
 	bool isRunning;
-	class Character* player;
+	class Person* player;
 
 	std::vector<class Sprite*> sprites;
 	std::unordered_map<const char*, SDL_Texture*> textures;

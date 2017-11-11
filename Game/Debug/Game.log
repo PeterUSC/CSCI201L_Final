@@ -1,8 +1,5 @@
-﻿  Character.cpp
-  Generating Code...
-  Skipping... (no relevant changes detected)
-  Sprite.cpp
-  Game.cpp
+﻿  Person.cpp
+c:\users\peter\desktop\csci201l_final\game\person.cpp(51): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
   Game.vcxproj -> C:\Users\Peter\Desktop\CSCI201L_Final\Game\Debug\Game.exe
   Game.vcxproj -> C:\Users\Peter\Desktop\CSCI201L_Final\Game\Debug\Game.pdb (Partial PDB)
   C:\Users\Peter\Desktop\CSCI201L_Final\Game\\..\Libraries\SDL\lib\win\x86\libfreetype-6.dll

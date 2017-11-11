@@ -7,6 +7,7 @@
 #include "Math.h"
 #include "Character.h"
 #include "Sprite.h"
+#include "Person.h"
 
 Game::Game()
 :window(nullptr)
@@ -80,7 +81,10 @@ void Game::ProcessInput()
 	{
 		isRunning = false;
 	}
-	//player->ProcessInput(state);
+	for (auto character : characters)
+	{
+		character->ProcessInput(state);
+	}
 }
 
 void Game::Shutdown()
@@ -139,7 +143,7 @@ void Game::LoadData()
 
 	
 	
-	player = new Character(this);
+	player = new Person(this);
 	player->SetPosition(Vector2(20,20));
 	
 	Sprite* playerSprite = new Sprite(player,10);
