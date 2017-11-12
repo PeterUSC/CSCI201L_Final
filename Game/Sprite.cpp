@@ -13,6 +13,7 @@ Sprite::Sprite(Character* c, int draw)
 
 Sprite::~Sprite()
 {
+	owner->GetGame()->RemoveSprite(this);
 }
 void Sprite::SetTexture(SDL_Texture* text)
 { 

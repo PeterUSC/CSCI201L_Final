@@ -10,7 +10,7 @@ public:
 	void ProcessInput(const Uint8 *state) override;
 private:
 	int direction;
-	int timeAlive = 0;
+	float timeAlive = 0;
 	float const speed = 500;
 };
 

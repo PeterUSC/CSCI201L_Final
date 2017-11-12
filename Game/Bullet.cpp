@@ -12,6 +12,7 @@ Bullet::Bullet(Game* game,int direct):Character(game)
 	bulletSprite->SetTexture(game->GetTexture("Assets/Bullet.png"));
 	Vector2 startPos = GetGame()->GetPlayer()->GetPosition();
 	SetPosition(startPos);
+	SetSprite(bulletSprite);
 }
 
 
@@ -25,13 +26,11 @@ void Bullet::Update(float deltaTime)
 
 	newPos.x += speed*direction*deltaTime;
 	SetPosition(newPos);
-	/*
+	
 	if (timeAlive >= 1)
 	{
 		this->SetAlive(false);
 	}
-	*/
-	this->SetAlive(false);
 	timeAlive += deltaTime;
 }
 

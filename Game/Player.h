@@ -10,6 +10,7 @@ public:
 	void Update(float deltaTime) override;
 private:
 	bool spacePressed=false;
+	bool shiftPressed = false;
 	bool inTheAir=false;
 	enum direction{Left,Right};
 	direction lastDirection = Right;

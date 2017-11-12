@@ -1,13 +1,15 @@
 #include "Character.h"
 #include "Game.h"
 #include "Sprite.h"
+#include "Collision.h"
 
 
 Character::Character(Game* game):
 	myGame(game),
 	mySprite(nullptr),
 	position(Vector2::Zero),
-	rotation(0.0f)
+	rotation(0.0f),
+	myCollision(nullptr)
 {
 	game->AddCharacter(this);
 }
@@ -15,9 +17,12 @@ Character::Character(Game* game):
 
 Character::~Character()
 {
-	myGame->RemoveCharacter(this);
 	delete mySprite;
-	
+	if (myCollision)
+	{
+		delete myCollision;
+	}
+	myGame->RemoveCharacter(this);
 }
 
 void Character::ProcessInput(const Uint8 *state)

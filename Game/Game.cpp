@@ -139,9 +139,9 @@ void Game::GenerateOutput()
 	SDL_RenderClear(renderer);
 	for (auto sprite : sprites)
 	{
-		//SDL_Log("sprite %i",sprites.size());
 		sprite->DrawTexture(renderer);
 	}
+
 	SDL_RenderPresent(renderer);
 }
 
@@ -150,19 +150,16 @@ void Game::RemoveCharacter(Character* removee)
 	auto charIter = std::find(characters.begin(), characters.end(), removee);
 	if (charIter != characters.end())
 	{
-		Sprite* removeeSprite = removee->getSprite();
-		auto spriteIter = std::find(sprites.begin(), sprites.end(), removeeSprite);
-		if (spriteIter != sprites.end())
-		{
-			SDL_Log("deleting spirte");
-			sprites.erase(spriteIter);
-		}
-		SDL_Log("deleting character");
 		characters.erase(charIter);
 	}
 }
 
-//void Game::RemoveSprite()
+void Game::RemoveSprite(Sprite* removee)
+{
+	auto spriteIter = std::find(sprites.begin(), sprites.end(), removee);
+	sprites.erase(spriteIter);
+
+}
 void Game::LoadData()
 {
 	LoadTexture("Assets/Background.png");

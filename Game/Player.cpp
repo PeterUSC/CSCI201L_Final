@@ -43,7 +43,7 @@ void Player::ProcessInput(const Uint8 *state)
 			inTheAir = true;
 		}
 	}
-	if (state[SDL_SCANCODE_LSHIFT])
+	if (!shiftPressed && state[SDL_SCANCODE_LSHIFT])
 	{
 		if (lastDirection==Right)
 		{
@@ -55,6 +55,7 @@ void Player::ProcessInput(const Uint8 *state)
 		}
 	}
 	spacePressed = state[SDL_SCANCODE_SPACE];
+	shiftPressed = state[SDL_SCANCODE_LSHIFT];
 
 }
 void Player::Update(float deltaTime)

@@ -11,6 +11,8 @@ private:
 	Vector2 position;
 	class Sprite* mySprite;
 	bool alive = true;
+	class Collision* myCollision;
+	
 
 public:
 	Character(class Game* game);
@@ -34,6 +36,8 @@ public:
 
 	void SetSprite(class Sprite*);
 	Sprite* GetSprite();
+
+	Collision* GetCollision() { return myCollision; }
 	
 };
 
