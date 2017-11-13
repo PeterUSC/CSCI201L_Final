@@ -11,6 +11,8 @@
 #include "Player.h"
 #include "Brick.h"
 #include "Enemy.h"
+#include "Collision.h"
+#include <iostream>
 
 Game::Game()
 :window(nullptr)
@@ -211,7 +213,72 @@ void Game::LoadData()
 	
 	Brick* newBrick = new Brick(this);
 	newBrick->SetPosition(Vector2(700, 600));
-	
+}
+
+void Game::LoadLevel(std::string fileName)
+{
+    std::ifstream file(fileName);
+    if(!file.is_open())
+    {
+		SDL_Log("Failed tp load level: %s", fileName);
+    }
+    
+    size_t row = 0;
+    std::string line;
+    while(!file.eof())
+    {
+        std::getline(file, line);
+        for(size_t col = 0; col < line.size(); col++)
+        {
+            //if not empty space
+			if (line[col] != '.')
+			{
+				//if start position
+				if (line[col] == 'S')
+				{
+					Vector2 pos;
+					pos.x = 32.0f + 64.0f * col;
+					pos.y = 16.0f + 32.0f * row;
+					player = new Player(this);
+					player->SetStart(pos);
+				}
+
+				//if finish positon
+				else if (line[col] == 'F')
+				{
+					Vector2 pos;
+					pos.x = 32.0f + 64.0f * col;
+					pos.y = 16.0f + 32.0f * row;
+					Character* finish = new Character(this);
+					finish->SetPosition(pos);
+					Collision* finishColl = new Collision(finish);
+					finish->SetCollision(finishColl);
+				}
+
+				//if enemy positon
+				else if (line[col] == 'E')
+                {
+                   Vector2 pos;
+                   pos.x = 32.0f + 64.0f * col;
+                   pos.y = 16.0f + 32.0f * row;
+                   Enemy* enemy = new Enemy(this);
+				   enemy->SetPosition(pos);
+                 }
+                             
+                //if barrier location
+                else
+                {
+                    Vector2 pos;
+                    pos.x = 32.0f + 64.0f * col;
+                    pos.y = 16.0f + 32.0f * row;
+                    Brick* b = new Brick(this);
+                    b->SetPosition(pos);
+                }
+            }
+        }
+        
+        row++;
+    }
 }
 
 void Game::LoadTexture(const char* fileName)

@@ -24,7 +24,7 @@ public:
 
 	std::vector<class Brick*> bricks;
 	std::vector<class Enemy*> enemies;
-
+	void LoadLevel(std::string fileName);
 	Vector2 GetCamPos() { return camPos; }
 	void SetCamPos(Vector2 newPos) { camPos = newPos; }
 	//void LoadSound(const std::string& filename);
