@@ -28,8 +28,8 @@ void Sprite::DrawTexture(SDL_Renderer* renderer)
 		SDL_Rect r;
 		r.w = static_cast<int>(width);
 		r.h = static_cast<int>(height);
-		r.x = static_cast<int>(owner->GetPosition().x - r.w / 2);
-		r.y = static_cast<int>(owner->GetPosition().y - r.h / 2);
+		r.x = static_cast<int>(owner->GetPosition().x - r.w / 2 )- parralax*owner->GetGame()->GetCamPos().x;
+		r.y = static_cast<int>(owner->GetPosition().y - r.h / 2)- parralax*owner->GetGame()->GetCamPos().y;
 
 		SDL_RenderCopyEx(renderer,
 			texture,

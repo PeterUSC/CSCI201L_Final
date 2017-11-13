@@ -13,5 +13,6 @@ protected:
 	float xSpeed;
 	float ySpeed;
 	float const Gravity = 900.0f;
+	bool inTheAir = false;
 };
 

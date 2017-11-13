@@ -37,5 +37,5 @@ bool Collision::Collide(Collision* other)
 	Vector2 max = GetMax();
 	Vector2 otherMin = other->GetMin();
 	Vector2 otherMax = other->GetMax();
-	return max.x < otherMin.x ||max.y < otherMin.y ||otherMax.x < min.x ||otherMax.y < min.y;
+	return !(max.x < otherMin.x ||max.y < otherMin.y ||otherMax.x < min.x ||otherMax.y < min.y);
 }

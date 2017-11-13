@@ -9,6 +9,8 @@
 #include "Sprite.h"
 #include "Person.h"
 #include "Player.h"
+#include "Brick.h"
+#include "Enemy.h"
 
 Game::Game()
 :window(nullptr)
@@ -162,25 +164,53 @@ void Game::RemoveSprite(Sprite* removee)
 }
 void Game::LoadData()
 {
-	LoadTexture("Assets/Background.png");
+	LoadTexture("Assets/sky.png");
+	LoadTexture("Assets/rocks_1.png");
+	LoadTexture("Assets/rocks_2.png");
+	LoadTexture("Assets/sky.png");
 	LoadTexture("Assets/Idle.png");
 	LoadTexture("Assets/Bullet.png");
+	LoadTexture("Assets/BlockA.png");
+	LoadTexture("Assets/Run1.png");
 
-	Character* background = new Character(this);
-	Vector2 middle = Vector2(1024/2, 768/2);
-	background->SetPosition(middle);
-	Sprite* bgSprite = new Sprite(background,9);
-	background->SetSprite(bgSprite);
-	bgSprite->SetTexture(GetTexture("Assets/Background.png"));
+	int size = 17;
+	for (int i = 0; i < size; i++)
+	{
+		Vector2 middle = Vector2(i * 1024 / 2, 768 / 2);
+		Character* layer1 = new Character(this);
+		layer1->SetPosition(middle);
+		Sprite* bgSprite = new Sprite(layer1, 9);
+		bgSprite->SetParralax(0.75);
+		layer1->SetSprite(bgSprite);
+		bgSprite->SetTexture(GetTexture("Assets/rocks_2.png"));
+
+
+		Character* layer2 = new Character(this);
+		layer2->SetPosition(middle);
+		Sprite* lay2Sprite = new Sprite(layer2, 8);
+		lay2Sprite->SetParralax(0.50);
+		layer2->SetSprite(lay2Sprite);
+		lay2Sprite->SetTexture(GetTexture("Assets/rocks_1.png"));
+
+		Character* layer3 = new Character(this);
+		layer3->SetPosition(middle);
+		Sprite* lay3Sprite = new Sprite(layer3, 7);
+		lay3Sprite->SetParralax(0.25);
+		layer3->SetSprite(lay3Sprite);
+		lay3Sprite->SetTexture(GetTexture("Assets/sky.png"));
+	}
+
 
 	
 	
 	player = new Player(this);
-	player->SetPosition(Vector2(20,20));
+	player->SetStart(Vector2(20,20));
+
+	Enemy* zombie = new Enemy(this);
+	zombie->SetPosition(Vector2(800, 600));
 	
-	Sprite* playerSprite = new Sprite(player,10);
-	player->SetSprite(playerSprite);
-	playerSprite->SetTexture(GetTexture("Assets/Idle.png"));
+	Brick* newBrick = new Brick(this);
+	newBrick->SetPosition(Vector2(700, 600));
 	
 }
 

@@ -3,6 +3,7 @@
 #include <unordered_map>
 #include <string>
 #include <vector>
+#include "Math.h"
 #include "SDL/SDL_mixer.h"
 
 class Game
@@ -20,6 +21,12 @@ public:
 
 	void RemoveCharacter(class Character* removee);
 	void RemoveSprite(class Sprite* removee);
+
+	std::vector<class Brick*> bricks;
+	std::vector<class Enemy*> enemies;
+
+	Vector2 GetCamPos() { return camPos; }
+	void SetCamPos(Vector2 newPos) { camPos = newPos; }
 	//void LoadSound(const std::string& filename);
 	//Mix_Chunk* GetSound(const std::string& filename);
 private:
@@ -28,7 +35,7 @@ private:
 	void GenerateOutput();
 	void LoadData();
 
-
+	Vector2 camPos;
 	
 
 	

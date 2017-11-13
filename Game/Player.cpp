@@ -1,11 +1,16 @@
 #include "Player.h"
 #include "Game.h"
 #include "Sprite.h"
+#include "Brick.h"
 #include "Bullet.h"
+#include "Collision.h"
 
 
 Player::Player(Game* game):Person(game)
 {
+	Sprite* playerSprite = new Sprite(this, 100);
+	this->SetSprite(playerSprite);
+	playerSprite->SetTexture(game->GetTexture("Assets/Idle.png"));
 }
 
 
@@ -60,18 +65,6 @@ void Player::ProcessInput(const Uint8 *state)
 }
 void Player::Update(float deltaTime)
 {
-	Character::Update(deltaTime);
-	Vector2 newPos = GetPosition();
-	newPos.x += xSpeed*deltaTime;
-	ySpeed += deltaTime*Gravity;
-	newPos.y += ySpeed*deltaTime;
-
-	if (newPos.y + getSprite()->GetHeight() / 2 >= 768)
-	{
-		ySpeed = 0;
-		newPos.y = 768 - getSprite()->GetHeight() / 2;
-		inTheAir = false;
-	}
-
-	SetPosition(newPos);
+	Person::Update(deltaTime);
+	GetGame()->SetCamPos(Vector2(GetPosition().x - 512, 0));
 }

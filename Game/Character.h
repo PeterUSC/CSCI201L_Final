@@ -38,6 +38,7 @@ public:
 	Sprite* GetSprite();
 
 	Collision* GetCollision() { return myCollision; }
+	void SetCollision(Collision* newColl) { myCollision = newColl; }
 	
 };
 

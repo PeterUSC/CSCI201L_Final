@@ -10,7 +10,7 @@ public:
 
 	int GetWidth() { return width; }
 	int GetHeight() { return height; }
-
+	void SetParralax(float parra) { parralax = parra; }
 	int GetDrawOrder() { return drawOrder; }
 private:
 	SDL_Texture* texture;
@@ -18,5 +18,6 @@ private:
 	int drawOrder;
 	int width;
 	int height;
+	float parralax=1.0f;
 };
 
