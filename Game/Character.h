@@ -16,7 +16,7 @@ private:
 
 public:
 	Character(class Game* game);
-	~Character();
+	virtual ~Character();
 	
 
 	void SetPosition(Vector2 newPos) { position = newPos; }

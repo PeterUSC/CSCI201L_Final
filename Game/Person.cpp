@@ -56,8 +56,11 @@ void Person::Update(float deltaTime)
 			if (dy1 < dy2&&dy1 < dx1&&dy1 < dx2)
 			{
 				newPos.y -= dy1;
-				ySpeed = 0;
-				inTheAir = false;
+				if (ySpeed > 0) {
+					ySpeed = 0;
+					inTheAir = false;
+				}
+				
 			}
 			else if (dy2 < dy1 &&dy2 < dx1&&dy2 < dx2)
 			{

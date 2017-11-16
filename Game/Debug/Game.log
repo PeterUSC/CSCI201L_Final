@@ -1,12 +1,5 @@
 ﻿  Game.cpp
-c:\users\peter\desktop\csci201l_final\game\game.cpp(179): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-  Enemy.cpp
-  Generating Code...
-  Compiling...
-  Player.cpp
-  Generating Code...
-  Skipping... (no relevant changes detected)
-  Bullet.cpp
+c:\users\peter\desktop\csci201l_final\game\game.cpp(195): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
   Game.vcxproj -> C:\Users\Peter\Desktop\CSCI201L_Final\Game\Debug\Game.exe
   Game.vcxproj -> C:\Users\Peter\Desktop\CSCI201L_Final\Game\Debug\Game.pdb (Partial PDB)
   C:\Users\Peter\Desktop\CSCI201L_Final\Game\\..\Libraries\SDL\lib\win\x86\libfreetype-6.dll

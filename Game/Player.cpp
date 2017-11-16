@@ -50,6 +50,7 @@ void Player::ProcessInput(const Uint8 *state)
 	}
 	if (!shiftPressed && state[SDL_SCANCODE_LSHIFT])
 	{
+
 		if (lastDirection==Right)
 		{
 			Bullet* b = new Bullet(GetGame(), 1);

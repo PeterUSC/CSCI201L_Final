@@ -20,6 +20,7 @@ public:
 	class Player* GetPlayer() { return player; }
 
 	void RemoveCharacter(class Character* removee);
+	void RemoveEnemy(class Enemy* removee);
 	void RemoveSprite(class Sprite* removee);
 
 	std::vector<class Brick*> bricks;
@@ -44,6 +45,7 @@ private:
 	Uint32 ticksCount;
 	bool isRunning;
 	class Player* player;
+	class Finish* finish;
 
 	std::vector<class Sprite*> sprites;
 	std::unordered_map<const char*, SDL_Texture*> textures;

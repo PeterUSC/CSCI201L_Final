@@ -11,6 +11,7 @@
 #include "Player.h"
 #include "Brick.h"
 #include "Enemy.h"
+#include "Finish.h"
 #include "Collision.h"
 #include <iostream>
 
@@ -113,7 +114,10 @@ void Game::UpdateGame()
 		deltaTime = 0.05f;
 	}
 	ticksCount = SDL_GetTicks();
-
+	if (finish->GetCollision()->Collide(player->GetCollision()))
+	{
+		isRunning = false;
+	}
 	std::vector<Character*> copy = characters;
 	// Update all characters
 	for (auto character : copy)
@@ -122,7 +126,7 @@ void Game::UpdateGame()
 	}
 	//SDL_Log("to characters size %i", characters.size());
 	std::vector<Character*> toDelete;
-	for (auto character : characters)
+	for (Character* character : characters)
 	{
 		if (!character->isAlive())
 		{
@@ -130,10 +134,11 @@ void Game::UpdateGame()
 		}
 	}
 	//SDL_Log("to delete size %i", toDelete.size());
-	for (auto dead : toDelete)
+	for (Character* dead : toDelete)
 	{
 		delete dead;
 	}
+	
 	
 }
 
@@ -155,6 +160,15 @@ void Game::RemoveCharacter(Character* removee)
 	if (charIter != characters.end())
 	{
 		characters.erase(charIter);
+	}
+}
+
+void Game::RemoveEnemy(Enemy* removee)
+{
+	auto charIter = std::find(enemies.begin(), enemies.end(), removee);
+	if (charIter != enemies.end())
+	{
+		enemies.erase(charIter);
 	}
 }
 
@@ -204,7 +218,7 @@ void Game::LoadData()
 
 
 	
-	
+	/*
 	player = new Player(this);
 	player->SetStart(Vector2(20,20));
 
@@ -212,7 +226,15 @@ void Game::LoadData()
 	zombie->SetPosition(Vector2(800, 600));
 	
 	Brick* newBrick = new Brick(this);
-	newBrick->SetPosition(Vector2(700, 600));
+	newBrick->SetPosition(Vector2(700, 700));
+	Vector2 pos;
+	pos.x = 1000;
+	pos.y = 700;
+	Finish* f = new Finish(this);
+	f->SetPosition(pos);
+	finish = f;
+	*/
+	LoadLevel("Assets/level1.txt");
 }
 
 void Game::LoadLevel(std::string fileName)
@@ -239,6 +261,7 @@ void Game::LoadLevel(std::string fileName)
 					Vector2 pos;
 					pos.x = 32.0f + 64.0f * col;
 					pos.y = 16.0f + 32.0f * row;
+					SDL_Log("pos x: %i, pos y : %i", pos.x, pos.y);
 					player = new Player(this);
 					player->SetStart(pos);
 				}
@@ -249,10 +272,10 @@ void Game::LoadLevel(std::string fileName)
 					Vector2 pos;
 					pos.x = 32.0f + 64.0f * col;
 					pos.y = 16.0f + 32.0f * row;
-					Character* finish = new Character(this);
-					finish->SetPosition(pos);
-					Collision* finishColl = new Collision(finish);
-					finish->SetCollision(finishColl);
+					Finish* f= new Finish(this);
+					f->SetPosition(pos);
+					finish = f;
+					
 				}
 
 				//if enemy positon

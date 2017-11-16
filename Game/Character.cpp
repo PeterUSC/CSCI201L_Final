@@ -18,10 +18,7 @@ Character::Character(Game* game):
 Character::~Character()
 {
 	delete mySprite;
-	if (myCollision)
-	{
-		delete myCollision;
-	}
+	delete myCollision;
 	myGame->RemoveCharacter(this);
 }
 
