@@ -8,8 +8,8 @@
 		levelcompleted int(10) not null
     );
     
-    INSERT INTO Player (username, password, levelcompleted) VALUES (johnny, karate, 2);
-    INSERT INTO Player (username, password, levelcompleted) VALUES (me, me, 1);
+    INSERT INTO Player (username, password, levelcompleted) VALUES ('johnny', 'karate', 2);
+    INSERT INTO Player (username, password, levelcompleted) VALUES ('me', 'me', 1);
     
     
 	
