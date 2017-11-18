@@ -44,7 +44,7 @@ void Player::ProcessInput(const Uint8 *state)
 	{
 		if (!inTheAir)
 		{
-			ySpeed = -500;
+			ySpeed = -700;
 			inTheAir = true;
 		}
 	}

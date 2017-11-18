@@ -20,4 +20,5 @@ Brick::Brick(Game* game):Character(game)
 
 Brick::~Brick()
 {
+	GetGame()->RemoveBrick(this);
 }

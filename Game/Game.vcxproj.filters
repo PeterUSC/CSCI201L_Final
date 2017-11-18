@@ -43,6 +43,9 @@
     <ClCompile Include="Finish.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Barrier.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -78,5 +81,6 @@
     <ClInclude Include="Finish.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="Barrier.h" />
   </ItemGroup>
 </Project>

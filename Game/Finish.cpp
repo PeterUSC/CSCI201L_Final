@@ -6,7 +6,7 @@
 Finish::Finish(Game* game):Character(game)
 {
 	Sprite* brickSprite = new Sprite(this);
-	brickSprite->SetTexture(game->GetTexture("Assets/BlockA.png"));
+	brickSprite->SetTexture(game->GetTexture("Assets/BlockB.png"));
 	this->SetSprite(brickSprite);
 
 	Collision* coll = new Collision(this);

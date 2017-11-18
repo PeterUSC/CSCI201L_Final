@@ -13,6 +13,7 @@
 #include "Enemy.h"
 #include "Finish.h"
 #include "Collision.h"
+#include "Barrier.h"
 #include <iostream>
 
 Game::Game()
@@ -178,6 +179,17 @@ void Game::RemoveSprite(Sprite* removee)
 	sprites.erase(spriteIter);
 
 }
+void Game::RemoveBrick(class Brick* removee)
+{
+	auto Iter = std::find(bricks.begin(), bricks.end(), removee);
+	bricks.erase(Iter);
+}
+
+void Game::RemoveBarrier (Barrier* b)
+{
+	auto Iter = std::find(barriers.begin(), barriers.end(), b);
+	barriers.erase(Iter);
+}
 void Game::LoadData()
 {
 	LoadTexture("Assets/sky.png");
@@ -187,6 +199,7 @@ void Game::LoadData()
 	LoadTexture("Assets/Idle.png");
 	LoadTexture("Assets/Bullet.png");
 	LoadTexture("Assets/BlockA.png");
+	LoadTexture("Assets/BlockB.png");
 	LoadTexture("Assets/Run1.png");
 
 	int size = 17;
@@ -287,6 +300,14 @@ void Game::LoadLevel(std::string fileName)
                    Enemy* enemy = new Enemy(this);
 				   enemy->SetPosition(pos);
                  }
+				else if (line[col] == 'H')
+				{
+					Vector2 pos;
+					pos.x = 32.0f + 64.0f * col;
+					pos.y = 16.0f + 32.0f * row;
+					Barrier* barrier = new Barrier(this);
+					barrier->SetPosition(pos);
+				}
                              
                 //if barrier location
                 else

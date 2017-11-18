@@ -3,6 +3,7 @@
 #include "Sprite.h"
 #include "Collision.h"
 #include "Player.h"
+#include "Barrier.h"
 
 
 Enemy::Enemy(Game* game):Person(game)
@@ -11,6 +12,7 @@ Enemy::Enemy(Game* game):Person(game)
 	this->SetSprite(playerSprite);
 	playerSprite->SetTexture(game->GetTexture("Assets/Run1.png"));
 	game->enemies.emplace_back(this);
+	xSpeed = -100;
 }
 
 
@@ -21,17 +23,18 @@ Enemy::~Enemy()
 
 void Enemy::Update(float deltaTime)
 {
-	if (directionCounter <= 2.5)
+	if (directionCounter >= 5)
 	{
-		xSpeed = -100;
-	}
-	else if (directionCounter > 2.5 && directionCounter <= 5)
-	{
-		xSpeed = 100;
-	}
-	else if (directionCounter > 5)
-	{
+		xSpeed *= -1;
 		directionCounter = 0;
+	}
+	auto barriers = GetGame()->barriers;
+	for (size_t i = 0; i < barriers.size(); i++)
+	{
+		if (barriers[i]->GetCollision()->Collide(this->GetCollision()))
+		{
+			xSpeed *= -1;
+		}
 	}
 	Person::Update(deltaTime);
 	if (this->GetCollision()->Collide(GetGame()->GetPlayer()->GetCollision()))

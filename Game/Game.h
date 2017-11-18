@@ -21,15 +21,19 @@ public:
 
 	void RemoveCharacter(class Character* removee);
 	void RemoveEnemy(class Enemy* removee);
+	void RemoveBrick(class Brick* removee);
 	void RemoveSprite(class Sprite* removee);
+	void RemoveBarrier(class Barrier* b);
 
 	std::vector<class Brick*> bricks;
 	std::vector<class Enemy*> enemies;
+	std::vector<class Barrier*> barriers;
 	void LoadLevel(std::string fileName);
 	Vector2 GetCamPos() { return camPos; }
 	void SetCamPos(Vector2 newPos) { camPos = newPos; }
-	//void LoadSound(const std::string& filename);
-	//Mix_Chunk* GetSound(const std::string& filename);
+	void AddBarrier(class Barrier* b) { barriers.push_back(b); }
+
+	
 private:
 	void ProcessInput();
 	void UpdateGame();
