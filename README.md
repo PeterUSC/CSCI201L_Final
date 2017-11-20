@@ -10,3 +10,10 @@ Instructions for Running the Project
 	- You can log in with johnny/karate or me/me as username/password.
 	- You can create a new account with any username and password you want.
 	- You can one level without having to sign in by pressing the demo button.
+	
+7. Controls for the game:
+	- A and D to move left and right respectively
+  	- Space to jump
+  	- Shift to shoot
+Important tip: If you run off a platform without jumping you can still jump in midair.
+	       Some level may be imposssible to beat without using this mechanic.
