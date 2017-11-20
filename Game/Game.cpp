@@ -16,12 +16,12 @@
 #include "Barrier.h"
 #include <iostream>
 
-Game::Game()
+Game::Game(int level)
 :window(nullptr)
 ,renderer(nullptr)
 ,isRunning(true)
 {
-	
+	Level = level;
 }
 
 bool Game::Initialize()
@@ -79,6 +79,7 @@ void Game::ProcessInput()
 		{
 		case SDL_QUIT:
 			isRunning = false;
+			cont = false;
 			break;
 		}
 	}
@@ -87,6 +88,7 @@ void Game::ProcessInput()
 	if (state[SDL_SCANCODE_ESCAPE])
 	{
 		isRunning = false;
+		cont = false;
 	}
 	std::vector<Character*> copy = characters;
 	for (auto character : copy)
@@ -118,6 +120,7 @@ void Game::UpdateGame()
 	if (finish->GetCollision()->Collide(player->GetCollision()))
 	{
 		isRunning = false;
+		cont = true;
 	}
 	std::vector<Character*> copy = characters;
 	// Update all characters
@@ -228,26 +231,9 @@ void Game::LoadData()
 		layer3->SetSprite(lay3Sprite);
 		lay3Sprite->SetTexture(GetTexture("Assets/sky.png"));
 	}
-
-
-	
-	/*
-	player = new Player(this);
-	player->SetStart(Vector2(20,20));
-
-	Enemy* zombie = new Enemy(this);
-	zombie->SetPosition(Vector2(800, 600));
-	
-	Brick* newBrick = new Brick(this);
-	newBrick->SetPosition(Vector2(700, 700));
-	Vector2 pos;
-	pos.x = 1000;
-	pos.y = 700;
-	Finish* f = new Finish(this);
-	f->SetPosition(pos);
-	finish = f;
-	*/
-	LoadLevel("Assets/level1.txt");
+	std::string temp = "Assets/level" + Level;
+	std::string file = temp + ".txt";
+	LoadLevel(file);
 }
 
 void Game::LoadLevel(std::string fileName)

@@ -9,7 +9,8 @@
 class Game
 {
 public:
-	Game();
+	Game(int level);
+	int Level;
 	bool Initialize();
 	void RunLoop();
 	void Shutdown();
@@ -18,6 +19,8 @@ public:
 	SDL_Texture* GetTexture(const char* fileName);
 	void AddSprite(class Sprite* sprite);
 	class Player* GetPlayer() { return player; }
+
+	bool cont=false;
 
 	void RemoveCharacter(class Character* removee);
 	void RemoveEnemy(class Enemy* removee);
